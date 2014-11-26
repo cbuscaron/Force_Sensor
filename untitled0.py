@@ -7,15 +7,24 @@ Created on Wed Nov 26 12:10:17 2014
 
 from matplotlib.colors import LogNorm
 from pylab import *
+import random
+import numpy as np
 
-#normal distribution center at x=0 and y=5
-x = randn(50000)
-print len(x)
+p = 10 # 0-40
+#x = randn(1000000)
+#print len(x)
 
-y = randn(50000)
+#y = randn(1000000)
+
+SampleSize =22.67*math.exp(0.2855*p)
+
+x = np.random.uniform(-p/10, p/10,size=SampleSize)
+y = np.random.uniform(-p/10, p/10,size=SampleSize)
+
+
 figure()
 hist2d(x, y, bins=50,range=np.array([(-4, 4), (-4, 4)]))
-xlim([-4, 5])
+xlim([-4, 4])
 ylim([-4, 4])
 colorbar()
 show()
