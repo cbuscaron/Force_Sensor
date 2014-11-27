@@ -10,7 +10,7 @@ from pylab import *
 import random
 import numpy as np
 
-p = 20 # 0-40
+p = 0 # 0-40
 #x = randn(1000000)
 #print len(x)
 
@@ -18,7 +18,7 @@ p = 20 # 0-40
 
 SampleSize =22.67*math.exp(0.2855*p)
 
-x = np.random.uniform(-p/20, p/20, size=SampleSize)
+x = np.random.uniform(-p/15, p/15, size=SampleSize)
 y = np.random.uniform(-p/20, p/20, size=SampleSize)
 
 
