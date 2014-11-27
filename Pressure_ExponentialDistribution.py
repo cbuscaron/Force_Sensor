@@ -37,7 +37,7 @@ y = randn(SampleSize)
 
 
 ##figure(figsize=(10,10))
-hist2d(x, y, bins=150,range=np.array([(-5, 5), (-5, 5)]))
+plt.hist2d(x, y, bins=150,range=np.array([(-5, 5), (-5, 5)]))
 xlim([-5, 5])
 ylim([-5, 5])
 colorbar()
@@ -46,7 +46,9 @@ axcolor = 'lightgoldenrodyellow'
 axfreq = plt.axes([0.1, .95, 0.65, 0.03], axisbg=axcolor)
 sfreq = Slider(axfreq, 'Force(N)', 0, 40.0, valinit=0.0)
 
-pN
+##plt.ion()
+
+
 def update(val):
     ##amp = samp.val
     p = sfreq.val
@@ -61,10 +63,10 @@ def update(val):
     y = randn(SampleSize)
     
     plt.subplot()
-    hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+    plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
     
     
-    fig.canvas.draw_idle()
+    ##fig.canvas.draw_idle()
 sfreq.on_changed(update)
 ##samp.on_changed(update)
 

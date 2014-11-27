@@ -11,54 +11,33 @@ import random
 import numpy as np
 from matplotlib.widgets import Slider, Button, RadioButtons
 import serial 
-
-p = 0.0 # 0-40
-#x = randn(1000000)
-#print len(x)t
-
-#y = randn(1000000)
-
-SampleSize =22.67*math.exp(0.2855*p)
-SampleSize2= SampleSize/2
-
-x = np.random.uniform(-p/15, p/15, size=SampleSize)
-y = np.random.uniform(-p/20, p/20, size=SampleSize)
-
-x = randn(SampleSize)
-y = randn(SampleSize)
+import matplotlib.pyplot as plt
+from drawnow import *
 
 
 
-##figure(figsize=(10,10))
-hist2d(x, y, bins=150,range=np.array([(-5, 5), (-5, 5)]))
-xlim([-5, 5])
-ylim([-5, 5])
-colorbar()
+arduinoSerialData = serial.Serial('com3',9600) #Create Serial port object called arduinoSerialData
 
-axcolor = 'lightgoldenrodyellow'
-axfreq = plt.axes([0.1, .95, 0.65, 0.03], axisbg=axcolor)
-sfreq = Slider(axfreq, 'Force(N)', 0, 40.0, valinit=0.0)
+plt.ion()
 
-def update(val):
-    ##amp = samp.val
-    p = sfreq.val
-    SampleSize =22.67*math.exp(0.21*p)
+p = 0
+x = 0
+y = 0
+ 
+def makeFig():
+    plt.subplot()
+    plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+    colorbar()
 
-    ##x = np.random.uniform(-p/15, p/15, size=SampleSize)
+while True:
+    while (arduinoSerialData.inWaiting()==0): #Wait here until there is data
+        pass #do nothing
     
-    ##y = np.random.uniform(-p/20, p/20, size=SampleSize)
-    ##figure(figsize=(10,10))
+    myData = arduinoSerialData.readline()
+    p = float(myData)
+    SampleSize =22.67*math.exp(0.21*p) 
     
     x = randn(SampleSize)
     y = randn(SampleSize)
-    
-    plt.subplot()
-    hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
-    
-    
-    fig.canvas.draw_idle()
-sfreq.on_changed(update)
-##samp.on_changed(update)
-
-
-##show()
+    drawnow(makeFig)                       #Call drawnow to update our live graph
+    plt.pause(.00000001)                     #Pause Briefly. Important to keep drawnow from crashing
