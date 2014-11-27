@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Thu Nov 27 17:23:26 2014
+
+@author: Camilo
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Thu Nov 27 11:19:39 2014
 
 @author: Camilo
@@ -46,24 +53,31 @@ axcolor = 'lightgoldenrodyellow'
 axfreq = plt.axes([0.1, .95, 0.65, 0.03], axisbg=axcolor)
 sfreq = Slider(axfreq, 'Force(N)', 0, 40.0, valinit=0.0)
 
-##plt.ion()
+plt.ion()
 
 
 def update(val):
     ##amp = samp.val
     p = sfreq.val
-    SampleSize =22.67*math.exp(0.21*p)
+    SampleSize =15*math.exp(0.3*p)
 
     ##x = np.random.uniform(-p/15, p/15, size=SampleSize)
     
     ##y = np.random.uniform(-p/20, p/20, size=SampleSize)
     ##figure(figsize=(10,10))
     
-    x = randn(SampleSize-21)
-    y = randn(SampleSize-21)
+    x = randn(SampleSize)
+    y = randn(SampleSize)
     
-    plt.subplot()
-    plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+    ##plt.subplot()
+    ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+    at_hist, xedges, yedges = np.histogram2d(x, y, bins=350)
+    extent = [yedges[0], yedges[-1], xedges[0], xedges[-1]]
+
+    ##plt.figure()
+    plt.subplot()    
+    plt.imshow(at_hist, extent=extent, origin='lower', aspect='auto')
+    
     
     
     ##fig.canvas.draw_idle()
