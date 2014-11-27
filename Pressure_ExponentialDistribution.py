@@ -1,5 +1,12 @@
 # -*- coding: utf-8 -*-
 """
+Created on Thu Nov 27 11:19:39 2014
+
+@author: Camilo
+"""
+
+# -*- coding: utf-8 -*-
+"""
 Created on Wed Nov 26 12:10:17 2014
 
 @author: Camilo B.
@@ -39,6 +46,7 @@ axcolor = 'lightgoldenrodyellow'
 axfreq = plt.axes([0.1, .95, 0.65, 0.03], axisbg=axcolor)
 sfreq = Slider(axfreq, 'Force(N)', 0, 40.0, valinit=0.0)
 
+pN
 def update(val):
     ##amp = samp.val
     p = sfreq.val
