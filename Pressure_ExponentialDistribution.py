@@ -18,6 +18,8 @@ import random
 import numpy as np
 from matplotlib.widgets import Slider, Button, RadioButtons
 import serial 
+from matplotlib import pyplot as PLT
+from matplotlib import cm as CM
 
 p = 0.0 # 0-40
 #x = randn(1000000)
@@ -37,9 +39,9 @@ y = randn(SampleSize)
 
 
 ##figure(figsize=(10,10))
-plt.hist2d(x, y, bins=150,range=np.array([(-5, 5), (-5, 5)]))
-xlim([-5, 5])
-ylim([-5, 5])
+plt.hist2d(x, y, bins=150,range=np.array([(-6, 6), (-6, 6)]))
+xlim([-6, 6])
+ylim([-6, 6])
 colorbar()
 
 axcolor = 'lightgoldenrodyellow'
@@ -52,19 +54,25 @@ sfreq = Slider(axfreq, 'Force(N)', 0, 40.0, valinit=0.0)
 def update(val):
     ##amp = samp.val
     p = sfreq.val
-    SampleSize =22.67*math.exp(0.21*p)
+    SampleSize =10*math.exp(0.21*p)
 
     ##x = np.random.uniform(-p/15, p/15, size=SampleSize)
     
     ##y = np.random.uniform(-p/20, p/20, size=SampleSize)
     ##figure(figsize=(10,10))
     
-    x = randn(SampleSize-21)
-    y = randn(SampleSize-21)
+    x = randn(SampleSize-10)
+    y = randn(SampleSize-10)
     
     plt.subplot()
-    plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
-    
+    ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+    PLT.hexbin(x, y,gridsize=30, cmap=CM.jet, bins=None)
+    ##PLT.axis([x.min(), x.max(), y.min(), y.max()])
+    ##PLT.axis([-6,6,-6,6])
+
+    ##cb = PLT.colorbar()
+    ##cb.set_label('mean value')
+    ##PLT.show() 
     
     ##fig.canvas.draw_idle()
 sfreq.on_changed(update)
