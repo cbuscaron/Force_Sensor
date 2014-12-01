@@ -25,8 +25,9 @@ time.sleep(1.5)
 p = 0
 x = randn(1)
 y = randn(1)
-plt.hist2d(x, y, bins=50,range=np.array([(-6, 6), (-6, 6)]))
-plt.colorbar()
+#3plt.hist2d(x, y, bins=50,range=np.array([(-6, 6), (-6, 6)]))
+##plt.colorbar()
+
 
 i = 0
 t = 0
@@ -36,10 +37,12 @@ def makeFig():
     #ylim([0, 80])
     ##plt.colorbar()
     #plt.pause(.000000000001) 
-    hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+    ##plt.subplot()
+    hist2d(x1, y1, bins=50,range=np.array([(-6, 6), (-6, 6)]))
+    ##plt.subplot()
+    ##hist2d(x2, y2, bins=50,range=np.array([(-6, 6), (-6, 6)]))
     colorbar()
-    ##plt.hexbin(x, y,gridsize=30, cmap=CM.jet, bins=None)
-    ##plt.axis([x.min(), x.max(), y.min(), y.max()])
+    
     
     
 
@@ -58,19 +61,26 @@ while True:
     ##x = np.random.uniform(-p/15, p/15, size=SampleSize)
     
     ##y = np.random.uniform(-p/20, p/20, size=SampleSize)
-    x = randn(SampleSize-17)
-    y = randn(SampleSize-17)
+    x1 = randn(SampleSize-15)-2
+    y1 = randn(SampleSize-15)+4
+    
+    x2 = randn(SampleSize-15)+2
+    y2 = randn(SampleSize-15)-4
+    
+    x 
     #drawnow(makeFig)      
     print p
     ##print SampleSize
     ##plt.subplot()
     ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
     plt.ion()
-    if(i%6==0):
+    if(i%4==0):
         drawnow(makeFig)
+        ##plt.subplot()
+        ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+        ##plt.colorbar()
         plt.pause(.000000000001) 
-        print t
-        t= t+1
+        
     ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
     ##plt.hexbin(x, y,gridsize=30, cmap=CM.jet, bins=None)    
     ##plt.pause(.000000000001)                     #Pause Briefly. Important to keep drawnow from crashing
