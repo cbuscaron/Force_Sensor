@@ -13,4 +13,5 @@ I = file_id.getNode('/I').read()
 file_id.close() 
 pyplot.imshow(I, origin='lower', interpolation='nearest') 
 pyplot.show()
+print I.shape
 
