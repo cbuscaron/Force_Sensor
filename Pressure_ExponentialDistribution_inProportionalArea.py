@@ -26,7 +26,8 @@ p = 0
 x = randn(1)
 y = randn(1)
 #3plt.hist2d(x, y, bins=50,range=np.array([(-6, 6), (-6, 6)]))
-##plt.colorbar()
+plt.hist2d(x, y, bins=75,range=np.array([(-6, 6), (-6, 6)]))
+plt.colorbar()
 
 
 i = 0
@@ -38,7 +39,7 @@ def makeFig():
     ##plt.colorbar()
     #plt.pause(.000000000001) 
     ##plt.subplot()
-    hist2d(x1, y1, bins=50,range=np.array([(-6, 6), (-6, 6)]))
+    plt.hist2d(x1, y1, bins=75,range=np.array([(-6, 6), (-6, 6)]))
     ##plt.subplot()
     ##hist2d(x2, y2, bins=50,range=np.array([(-6, 6), (-6, 6)]))
     colorbar()
@@ -52,22 +53,20 @@ while True:
     
     myData = arduinoSerialData.readline()
     i = i + 1
-    p = float(myData)*4
-    if(p<40):
+    p = float(myData)*6
+    if(p<45):
         SampleSize =18*math.exp(0.2*p) 
     else:
-        SampleSize =18*math.exp(0.2*40)    
+        SampleSize =18*math.exp(0.2*45)    
     
     ##x = np.random.uniform(-p/15, p/15, size=SampleSize)
     
     ##y = np.random.uniform(-p/20, p/20, size=SampleSize)
-    x1 = randn(SampleSize-15)-2
-    y1 = randn(SampleSize-15)+4
+    x1 = randn(SampleSize-17)
+    y1 = randn(SampleSize-17)
     
-    x2 = randn(SampleSize-15)+2
-    y2 = randn(SampleSize-15)-4
     
-    x 
+    
     #drawnow(makeFig)      
     print p
     ##print SampleSize
