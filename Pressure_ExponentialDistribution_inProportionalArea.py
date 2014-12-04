@@ -53,7 +53,9 @@ while True:
     
     myData = arduinoSerialData.readline()
     i = i + 1
-    p = float(myData)*6
+    pv = float(myData)
+    p= pv*5
+    
     if(p<45):
         SampleSize =18*math.exp(0.2*p) 
     else:
@@ -68,7 +70,7 @@ while True:
     
     
     #drawnow(makeFig)      
-    print p
+    print pv
     ##print SampleSize
     ##plt.subplot()
     ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
