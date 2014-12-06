@@ -68,8 +68,12 @@ def makeFig():
 while True:
     while (arduinoSerialData.inWaiting()==0): #Wait here until there is data
         pass #do nothing
-        
-    print arduinoSerialData.readline()
+    
+    data = arduinoSerialData.readline() 
+    print data
+    ts = 'TS'
+    if(data == ts):
+        print 'If State'
     """
     while(arduinoSerialData.readline() != 'TS'):
         pass
