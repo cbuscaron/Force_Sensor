@@ -18,20 +18,38 @@ from matplotlib import cm as CM
 
 
 
-arduinoSerialData = serial.Serial('COM4',115200) #Create Serial port object called arduinoSerialData
+arduinoSerialData = serial.Serial('com4',115200) #Create Serial port object called arduinoSerialData
 time.sleep(1.5)
 
 
-p = 0
-x = randn(1)
-y = randn(1)
-#3plt.hist2d(x, y, bins=50,range=np.array([(-6, 6), (-6, 6)]))
-plt.hist2d(x, y, bins=75,range=np.array([(-6, 6), (-6, 6)]))
-plt.colorbar()
+p = 0.0 # 0-40
+
+
+SampleSize =22.67*math.exp(0.2855*p)
+
+x = randn(SampleSize-21)
+y = randn(SampleSize-21)
+ 
+
+plt.hist2d(x, y, bins=150,range=np.array([(-25, 25), (-25, 25)]))
+colorbar()
 
 
 i = 0
 t = 0
+
+myData = range(6)
+
+##print len(myData)
+
+##for i in range(0,6):
+##    print myData[i]
+    
+    
+    
+    
+##arduinoSerialData.close()
+"""
 def makeFig():
     #plt.hist(x, bins = 100) 
     #xlim([-5, 5])
@@ -43,14 +61,31 @@ def makeFig():
     ##plt.subplot()
     ##hist2d(x2, y2, bins=50,range=np.array([(-6, 6), (-6, 6)]))
     colorbar()
-    
+"""   
     
     
 
 while True:
     while (arduinoSerialData.inWaiting()==0): #Wait here until there is data
         pass #do nothing
+        
+    print arduinoSerialData.readline()
+    """
+    while(arduinoSerialData.readline() != 'TS'):
+        pass
     
+    for i in range(0,6):
+        myData[i] = arduinoSerialData.readline()
+        
+        
+    print '----------------------'
+    for i in range(0,6):
+        print myData[i] 
+    
+    print '----------------------'
+    """    
+        
+    """
     myData = arduinoSerialData.readline()
     i = i + 1
     pv = float(myData)
@@ -61,28 +96,20 @@ while True:
     else:
         SampleSize =18*math.exp(0.2*45)    
     
-    ##x = np.random.uniform(-p/15, p/15, size=SampleSize)
     
-    ##y = np.random.uniform(-p/20, p/20, size=SampleSize)
     x1 = randn(SampleSize-17)
     y1 = randn(SampleSize-17)
     
     
     
-    #drawnow(makeFig)      
+         
     print pv
-    ##print SampleSize
-    ##plt.subplot()
-    ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
+    
     plt.ion()
     if(i%4==0):
         drawnow(makeFig)
-        ##plt.subplot()
-        ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
-        ##plt.colorbar()
         plt.pause(.000000000001) 
+    """  
         
-    ##plt.hist2d(x, y, bins=50,range=np.array([(-5, 5), (-5, 5)]))
-    ##plt.hexbin(x, y,gridsize=30, cmap=CM.jet, bins=None)    
-    ##plt.pause(.000000000001)                     #Pause Briefly. Important to keep drawnow from crashing
-    ##time.sleep(0.5)
+        
+    
