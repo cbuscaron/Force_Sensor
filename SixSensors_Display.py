@@ -19,7 +19,7 @@ from matplotlib import cm as CM
 
 
 arduinoSerialData = serial.Serial('com4',115200) #Create Serial port object called arduinoSerialData
-time.sleep(1.5)
+time.sleep(2)
 
 
 p = 0.0 # 0-40
@@ -40,35 +40,38 @@ t = 0
 
 myData = range(6)
 
-##print len(myData)
+pv = range(6)
+x = range(6)
+y = range(6)
+SampleSize = range(6)
 
-##for i in range(0,6):
-##    print myData[i]
-    
-    
-    
-    
-##arduinoSerialData.close()
-"""
 def makeFig():
+    plt.hist2d(x, y, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())  
+    
+    plt.hist2d(x1, y1, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x2, y2, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x3, y3, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x4, y4, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x5, y5, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
     #plt.hist(x, bins = 100) 
     #xlim([-5, 5])
     #ylim([0, 80])
     ##plt.colorbar()
     #plt.pause(.000000000001) 
     ##plt.subplot()
-    plt.hist2d(x1, y1, bins=75,range=np.array([(-6, 6), (-6, 6)]))
+    #plt.hist2d(x1, y1, bins=75,range=np.array([(-6, 6), (-6, 6)]))
     ##plt.subplot()
     ##hist2d(x2, y2, bins=50,range=np.array([(-6, 6), (-6, 6)]))
-    colorbar()
-"""   
+    #colorbar()   
     
-pv = range(6)
-x = range(6)
-y = range(6)
-SampleSize = range(6)
 
-print len(pv) 
+
+
 
 while True:
     while (arduinoSerialData.inWaiting()==0): #Wait here until there is data
@@ -76,7 +79,15 @@ while True:
     
     arduinoString = arduinoSerialData.readline()
     dataArray = arduinoString.split(',')
-    
+    ##i = i + 1
+    ##for i in range(0,6):
+    print int(dataArray[0])
+    print int(dataArray[1])
+    print int(dataArray[2])
+    print int(dataArray[3])
+    print int(dataArray[4])
+    print int(dataArray[5])    
+    """
     pv[0] = int(dataArray[0])
     pv[1] = int(dataArray[1])
     pv[2] = int(dataArray[2])
@@ -92,23 +103,30 @@ while True:
             SampleSize[i] =30*math.exp(0.2*pv[i])
     
     
-    x1 = randn(SampleSize[0]-10)
-    y1 = randn(SampleSize-10)+15
+    x = randn(SampleSize[0]-29)
+    y = randn(SampleSize[0]-29)+15
     
-    x8 = randn(SampleSize-10)+7.5
-    y8 = randn(SampleSize-10)+12.99
+    x1 = randn(SampleSize[1]-29)+7.5
+    y1 = randn(SampleSize[1]-29)+12.99
     
-    x9 = randn(SampleSize-10)+12.99
-    y9 = randn(SampleSize-10)+7.5
+    x2 = randn(SampleSize[2]-29)+12.99
+    y2 = randn(SampleSize[2]-29)+7.5
     
-    x10 = randn(SampleSize-10)+15
-    y10 = randn(SampleSize-10)
+    x3 = randn(SampleSize[3]-29)+15
+    y3 = randn(SampleSize[3]-29)
     
-    x11 = randn(SampleSize-10)+12.99
-    y11 = randn(SampleSize-10)-7.5
+    x4 = randn(SampleSize[4]-29)+12.99
+    y4 = randn(SampleSize[4]-29)-7.5
     
-    x12 = randn(SampleSize-10)+7.5
-    y12 = randn(SampleSize-10)-12.99
+    x5 = randn(SampleSize[5]-29)+7.5
+    y5 = randn(SampleSize[5]-29)-12.99
+    
+    plt.ion()
+    
+    if(i%6 == 0):
+        drawnow(makeFig)
+        plt.pause(.000000000001) 
+    """
     ##for i in range(0,6):
      ##   print pv[i]
     ##for i in range(0,6):
