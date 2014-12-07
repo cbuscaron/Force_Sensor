@@ -63,17 +63,69 @@ def makeFig():
     colorbar()
 """   
     
-    
+pv = range(6)
+x = range(6)
+y = range(6)
+SampleSize = range(6)
+
+print len(pv) 
 
 while True:
     while (arduinoSerialData.inWaiting()==0): #Wait here until there is data
         pass #do nothing
     
-    data = arduinoSerialData.readline() 
-    print data
-    ts = 'TS'
-    if(data == ts):
-        print 'If State'
+    arduinoString = arduinoSerialData.readline()
+    dataArray = arduinoString.split(',')
+    
+    pv[0] = int(dataArray[0])
+    pv[1] = int(dataArray[1])
+    pv[2] = int(dataArray[2])
+    pv[3] = int(dataArray[3])
+    pv[4] = int(dataArray[4])
+    pv[5] = int(dataArray[5])
+    
+    
+    for i in range(0,6):
+        if(pv[i]<45):
+            SampleSize[i] =30*math.exp(0.2*pv[i])
+        else:
+            SampleSize[i] =30*math.exp(0.2*pv[i])
+    
+    
+    x1 = randn(SampleSize[0]-10)
+    y1 = randn(SampleSize-10)+15
+    
+    x8 = randn(SampleSize-10)+7.5
+    y8 = randn(SampleSize-10)+12.99
+    
+    x9 = randn(SampleSize-10)+12.99
+    y9 = randn(SampleSize-10)+7.5
+    
+    x10 = randn(SampleSize-10)+15
+    y10 = randn(SampleSize-10)
+    
+    x11 = randn(SampleSize-10)+12.99
+    y11 = randn(SampleSize-10)-7.5
+    
+    x12 = randn(SampleSize-10)+7.5
+    y12 = randn(SampleSize-10)-12.99
+    ##for i in range(0,6):
+     ##   print pv[i]
+    ##for i in range(0,6):
+      ##  pv[i] = int(dataArray[i])
+    
+    
+    ##for i in range(0,6):
+    ##    print dataArray[i]
+    ##pv = int(dataArray[0])
+    ##print data
+    ##print type(data)
+   
+    ##for i in range(0,6):
+      ##  pv[i] = 1
+    
+    ##for i in range(0,6):
+    
     """
     while(arduinoSerialData.readline() != 'TS'):
         pass
