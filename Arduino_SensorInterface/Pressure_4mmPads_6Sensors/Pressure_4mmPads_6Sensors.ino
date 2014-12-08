@@ -35,15 +35,17 @@ void loop(void){
             fsrPressure[i] = 214386*pow(fsrResistance[i],-1.135);
           }
         
-            Serial.println("TS");
+            
         
         
         for(int i; i<6; i++){
-          Serial.println(fsrPressure[i]);
+          Serial.print(fsrPressure[i]);
+          Serial.print(",");
                 
         }
+        Serial.println();
         
-        Serial.println("TE");
+        
         /*Serial.println("--------------------------------------");
         for(int i; i<6; i++){
                
