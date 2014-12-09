@@ -28,11 +28,11 @@ p = 0.0 # 0-40
 
 SampleSize =22.67*math.exp(0.2855*p)
 
-x = randn(SampleSize-21)
-y = randn(SampleSize-21)
+xx = randn(SampleSize-21)
+yy = randn(SampleSize-21)
  
 
-plt.hist2d(x, y, bins=150,range=np.array([(-25, 25), (-25, 25)]))
+plt.hist2d(xx, yy, bins=150,range=np.array([(-25, 25), (-25, 25)]))
 colorbar()
 
 
@@ -54,7 +54,10 @@ def isfloat(value):
     return False
 
 def makeFig():
+    plt.hist2d(xx, yy, bins=150,range=np.array([(-25, 25), (-25, 25)]))
+    plt.colorbar()
     plt.subplot()
+    
     plt.hist2d(x, y, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())  
     
     plt.hist2d(x1, y1, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
@@ -116,10 +119,10 @@ while True:
         for i in range(0,6):
             print SampleSize[i]
         
-        """
+        
         if(t%4 == 0):
-            print t
-         ##   drawnow(makeFig)
+            ##print t
+            drawnow(makeFig)
             
             ##plt.hist2d(x, y, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())  
     
@@ -136,7 +139,7 @@ while True:
             plt.pause(.000000000001) 
             ##for i in range(0,6):
             ##    print pv[i]
-        """
+        
     else:   
          print 'skip'
     """        
