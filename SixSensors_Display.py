@@ -41,10 +41,10 @@ t = 0
 
 myData = range(6)
 
-pv = range(6)
-x = range(6)
-y = range(6)
-SampleSize = range(6)
+pv = range(12)
+x = range(12)
+y = range(12)
+SampleSize = range(12)
 
 def isfloat(value):
   try:
@@ -55,7 +55,10 @@ def isfloat(value):
 
 def makeFig():
     plt.hist2d(xx, yy, bins=150,range=np.array([(-25, 25), (-25, 25)]))
-    plt.colorbar()
+    cbar = plt.colorbar()
+    cbar.set_ticks([0,10,20])
+    cbar.set_ticklabels([0,10,20])
+    
     plt.subplot()
     
     plt.hist2d(x, y, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())  
@@ -69,6 +72,18 @@ def makeFig():
     plt.hist2d(x4, y4, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
     
     plt.hist2d(x5, y5, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x6, y6, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x7, y7, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x8, y8, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x9, y9, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x10, y10, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
+    
+    plt.hist2d(x11, y11, bins=200,range=np.array([(-25, 25), (-25, 25)]),norm=LogNorm())
 
 
 
@@ -85,11 +100,13 @@ while True:
     ##for i in range(0,6):
     ##    pv[i] = ast.literal_eval(dataArray[i])\
     print len(dataArray)
-    if(len(dataArray) == 7):
-        for i in range(0,6):
-            pv[i] = int(dataArray[i])
+    if(len(dataArray) == 13):
+        for i in range(0,12):
+            pv[i] = int(dataArray[i])*2
+            if(i ==7):
+                pv[i] = int(dataArray[i])*4
         
-        for i in range(0,6):
+        for i in range(0,12):
             if(pv[i]<40):
                 SampleSize[i] =int(20*math.exp(0.2*pv[i]))
             else:
@@ -105,7 +122,7 @@ while True:
         x2 = randn(SampleSize[2]-19)+12.99
         y2 = randn(SampleSize[2]-19)+7.5
         
-        x3 = randn(SampleSize[3]-19)+15
+        x3 = randn(SampleSize[3]-19)-15
         y3 = randn(SampleSize[3]-19)
         
         x4 = randn(SampleSize[4]-19)+12.99
@@ -114,9 +131,27 @@ while True:
         x5 = randn(SampleSize[5]-19)+7.5
         y5 = randn(SampleSize[5]-19)-12.99
         
+        x6 = randn(SampleSize[6]-19)
+        y6 = randn(SampleSize[6]-19)-15
+    
+        x7 = randn(SampleSize[7]-19)-7.5
+        y7 = randn(SampleSize[7]-19)+12.99
+    
+        x8 = randn(SampleSize[8]-19)-12.99
+        y8 = randn(SampleSize[8]-19)+7.5
+    
+        x9 = randn(SampleSize[9]-19)-15
+        y9 = randn(SampleSize[9]-19)
+    
+        x10 = randn(SampleSize[10]-19)-12.99
+        y10 = randn(SampleSize[10]-19)-7.5
+    
+        x11 = randn(SampleSize[11]-19)-7.5
+        y11 = randn(SampleSize[11]-19)-12.99
+        
         plt.ion()
         
-        for i in range(0,6):
+        for i in range(0,12):
             print SampleSize[i]
         
         
